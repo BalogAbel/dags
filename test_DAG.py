@@ -62,7 +62,7 @@ with DAG(
     ) 
 
     spark_1 = SparkSubmitOperator( 
-    task_id='Run_yellow_cab_job' ,
+    task_id='Run_yellow_cab_job2' ,
     conn_id='Spark_conn',
     application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
     packages="org.apache.hadoop:hadoop-aws:3.2.0",
