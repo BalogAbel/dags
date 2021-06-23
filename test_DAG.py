@@ -7,14 +7,14 @@ from airflow import DAG
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
 from airflow.operators.python_operator import PythonOperator
-#from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
+from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
 from airflow.utils.dates import days_ago
 from airflow.models import Variable
 # These args will get passed on to each operator
 # You can override them on a per-task basis during operator initialization
 import os
 import boto3
-#from botocore.exceptions import ClientError
+from botocore.exceptions import ClientError
 
 
 
@@ -61,11 +61,11 @@ with DAG(
     op_kwargs={"s3_endpoint":"{{ var.value.s3_endpoint }}","access_key":"{{ var.value.s3_access_key }}","secretkey": "{{ var.value.s3_secret_key }}","source_folder": "{{ var.value.tmp_folder }}","target_bucket":"spark", "prefix":"test_data/"},
     ) 
 
-  #  spark_1 = SparkSubmitOperator( 
-  #  task_id='Run_yellow_cab_job' ,
-  #  conn_id='Spark_conn',
-  #  application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
-  #  packages="org.apache.hadoop:hadoop-aws:3.2.0",
-   # name='yellow_cab_test',)
+    spark_1 = SparkSubmitOperator( 
+    task_id='Run_yellow_cab_job' ,
+    conn_id='Spark_conn',
+    application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
+    packages="org.apache.hadoop:hadoop-aws:3.2.0",
+    name='yellow_cab_test',)
  
-   # spark_1 << upload_files
+    spark_1 << upload_files
