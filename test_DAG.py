@@ -70,7 +70,7 @@ with DAG(
     executor_cores=4,
     executor_memory='5g',
     driver_memory='5g',
-    conf={ "fs.s3a.access.key":"B2JDY11NHXLI77PHSX4D","fs.s3a.secret.key":"XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD" ,"fs.s3a.impl":"org.apache.hadoop.fs.s3a.S3AFileSystem","fs.s3a.endpoint":"http://s3-rook-ceph.apps.okdpres.alerant.org.uk","fs.s3a.connection.ssl.enabled":"false","fs.s3a.path.style.access":"true"},
+    conf={ "spark.hadoop.fs.s3a.access.key":"B2JDY11NHXLI77PHSX4D","spark.hadoop.fs.s3a.secret.key":"XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD" ,"spark.hadoop.fs.s3a.impl":"spark.hadoop.org.apache.hadoop.fs.s3a.S3AFileSystem","spark.hadoop.fs.s3a.endpoint":"http://s3-rook-ceph.apps.okdpres.alerant.org.uk","spark.hadoop.fs.s3a.connection.ssl.enabled":"false","spark.hadoop.fs.s3a.path.style.access":"true"},
     )
  
     ##spark_1 << upload_files
