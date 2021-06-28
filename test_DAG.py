@@ -46,7 +46,7 @@ default_args = {
     'retry_delay': timedelta(minutes=1),
 }
 with DAG(
-    'TestDAG',
+    'testdag',
     default_args=default_args,
     description='Test job',
     schedule_interval=None,
@@ -62,7 +62,7 @@ with DAG(
     ##) 
 
     spark_1 = SparkSubmitOperator( 
-    task_id='Runyellowcabjob' ,
+    task_id='runyellowcabjob' ,
     conn_id='Spark_conn',
     application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
     packages="org.apache.hadoop:hadoop-aws:3.2.0",
@@ -70,7 +70,7 @@ with DAG(
     executor_cores=1,
     executor_memory='5g',
     driver_memory='5g',
-    conf={ "spark.hadoop.fs.s3a.access.key":"B2JDY11NHXLI77PHSX4D","spark.hadoop.fs.s3a.secret.key":"XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD" ,"spark.hadoop.fs.s3a.impl":"org.apache.hadoop.fs.s3a.S3AFileSystem","spark.hadoop.fs.s3a.endpoint":"http://s3-rook-ceph.apps.okdpres.alerant.org.uk","spark.hadoop.fs.s3a.connection.ssl.enabled":"false","spark.hadoop.fs.s3a.path.style.access":"true"},
+    conf={ "spark.hadoop.fs.s3a.access.key":"B2JDY11NHXLI77PHSX4D","spark.hadoop.fs.s3a.secret.key":"XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD" ,"spark.hadoop.fs.s3a.impl":"org.apache.hadoop.fs.s3a.S3AFileSystem","spark.hadoop.fs.s3a.endpoint":"http://s3-rook-ceph.apps.okdpres.alerant.org.uk","spark.hadoop.fs.s3a.connection.ssl.enabled":"false","spark.hadoop.fs.s3a.path.style.access":"true","spark.dynamicAllocation.executorIdleTimeout":"300s"},
     )
  
     ##spark_1 << upload_files
