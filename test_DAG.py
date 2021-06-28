@@ -62,10 +62,15 @@ with DAG(
     ) 
 
     spark_1 = SparkSubmitOperator( 
-    task_id='Run_yellow_cab_job2' ,
+    task_id='Run_yellow_cab_job' ,
     conn_id='Spark_conn',
     application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
     packages="org.apache.hadoop:hadoop-aws:3.2.0",
-    name='yellow_cab_test',)
+    name='yellow_cab_test',
+    executor_cores=4,
+    executor_memory='5g',
+    driver_memory='5g',
+    conf={ "fs.s3a.access.key", "B2JDY11NHXLI77PHSX4D","fs.s3a.secret.key": "XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD" ,"fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem","fs.s3a.endpoint":"http://s3-rook-ceph.apps.okdpres.alerant.org.uk","fs.s3a.connection.ssl.enabled":"false","fs.s3a.path.style.access":"true"}
+    )
  
     spark_1 << upload_files
