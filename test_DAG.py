@@ -68,8 +68,8 @@ with DAG(
     packages="org.apache.hadoop:hadoop-aws:3.2.0",
     name='yellow_cab_test',
     executor_cores=2,
-    executor_memory='3g',
-    driver_memory='4g',
+    executor_memory='1.5g',
+    driver_memory='1g',
     conf={ "spark.hadoop.fs.s3a.access.key":"B2JDY11NHXLI77PHSX4D","spark.hadoop.fs.s3a.secret.key":"XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD" ,"spark.hadoop.fs.s3a.impl":"org.apache.hadoop.fs.s3a.S3AFileSystem","spark.hadoop.fs.s3a.endpoint":"http://s3-rook-ceph.apps.okdpres.alerant.org.uk","spark.hadoop.fs.s3a.connection.ssl.enabled":"false","spark.hadoop.fs.s3a.path.style.access":"true"},
     )
  
