@@ -53,20 +53,20 @@ with DAG(
     start_date=days_ago(1),
     tags=['test'],
 ) as dag:
+    ##task_id='Pythpn_upload_files_local_to_s3',
 
     ##upload_files = PythonOperator( 
-    ##task_id='Pythpn_upload_files_local_to_s3',
     ##python_callable= upload_to_s3,
     ##provide_context=True,
     ##op_kwargs={"s3_endpoint":"{{ var.value.s3_endpoint }}","access_key":"{{ var.value.s3_access_key }}","secretkey": "{{ var.value.s3_secret_key }}","source_folder": "{{ var.value.tmp_folder }}","target_bucket":"spark", "prefix":"test_data/"},
     ##) 
 
     spark_1 = SparkSubmitOperator( 
-    task_id='Run_yellow_cab_job' ,
+    task_id='Runyellowcabjob' ,
     conn_id='Spark_conn',
     application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
     packages="org.apache.hadoop:hadoop-aws:3.2.0",
-    name='yellow_cab_test',
+    name='yellowcabtest',
     executor_cores=1,
     executor_memory='5g',
     driver_memory='5g',
