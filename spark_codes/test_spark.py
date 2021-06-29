@@ -2,8 +2,12 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col,concat,lit,substring,when
 from pyspark.sql.types import LongType, StringType, StructField, StructType, BooleanType, ArrayType, IntegerType,DoubleType
 import os
+import socket
 
-os.environ['SPARK_LOCAL_HOSTNAME'] = '10.130.2.131'
+hostname = socket.gethostname()
+local_ip = socket.gethostbyname(hostname)
+
+os.environ['SPARK_LOCAL_HOSTNAME'] = local_ip
 
 spark = SparkSession.builder.appName("Testtest").config("spark.driver.memory", "5g").getOrCreate()
 
