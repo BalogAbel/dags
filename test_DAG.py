@@ -66,7 +66,7 @@ with DAG(
     task_id='runyellowcabjob' ,
     conn_id='Spark_conn',
     application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
-    packages="org.apache.hadoop:hadoop-aws:2.7.2",
+    packages="org.apache.hadoop:hadoop-aws:2.7.4",
     name='yellowcabtest',
     executor_cores=1,
     executor_memory='5g',
