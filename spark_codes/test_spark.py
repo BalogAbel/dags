@@ -6,13 +6,13 @@ from pyspark.sql.types import LongType, StringType, StructField, StructType, Boo
 spark = SparkSession.builder.appName("Testtest").config("spark.driver.memory", "5g").getOrCreate()
 
 ## Setting the S3 configuration 
- spark_context = spark.sparkContext
- spark_context._jsc.hadoopConfiguration().set("fs.s3a.access.key", "B2JDY11NHXLI77PHSX4D") 
- spark_context._jsc.hadoopConfiguration().set("fs.s3a.secret.key", "XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD") 
- spark_context._jsc.hadoopConfiguration().set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
- spark_context._jsc.hadoopConfiguration().set("fs.s3a.endpoint","http://s3-rook-ceph.apps.okdpres.alerant.org.uk")
- spark_context._jsc.hadoopConfiguration().set("fs.s3a.connection.ssl.enabled","false")
- spark_context._jsc.hadoopConfiguration().set("fs.s3a.path.style.access","true")
+spark_context = spark.sparkContext
+spark_context._jsc.hadoopConfiguration().set("fs.s3a.access.key", "B2JDY11NHXLI77PHSX4D") 
+spark_context._jsc.hadoopConfiguration().set("fs.s3a.secret.key", "XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD") 
+spark_context._jsc.hadoopConfiguration().set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
+spark_context._jsc.hadoopConfiguration().set("fs.s3a.endpoint","http://s3-rook-ceph.apps.okdpres.alerant.org.uk")
+spark_context._jsc.hadoopConfiguration().set("fs.s3a.connection.ssl.enabled","false")
+spark_context._jsc.hadoopConfiguration().set("fs.s3a.path.style.access","true")
 
 
 ## Define Schema
