@@ -66,11 +66,8 @@ with DAG(
     task_id='runyellowcabjob' ,
     conn_id='Spark_conn',
     application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
-    packages="org.apache.hadoop:hadoop-aws:3.2.0,org.apache.hadoop:hadoop-common:3.2.0,org.apache.hadoop:hadoop-hdfs:3.2.0,org.apache.hadoop:hadoop-distcp:3.2.0,org.apache.hadoop:hadoop-mapreduce-client-app:3.2.0,org.apache.hadoop:hadoop-mapreduce-client-jobclient:3.2.0,org.apache.hadoop:hadoop-mapreduce-client-core:3.2.0",
+    packages="org.apache.hadoop:hadoop-aws:3.2.0",
     name='yellowcabtest',
-    executor_cores=1,
-    executor_memory='5g',
-    driver_memory='5g',
     conf={ "spark.hadoop.fs.s3a.access.key":"B2JDY11NHXLI77PHSX4D","spark.hadoop.fs.s3a.secret.key":"XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD" ,"spark.hadoop.fs.s3a.impl":"org.apache.hadoop.fs.s3a.S3AFileSystem","spark.hadoop.fs.s3a.endpoint":"http://s3-rook-ceph.apps.okdpres.alerant.org.uk","spark.hadoop.fs.s3a.connection.ssl.enabled":"false","spark.hadoop.fs.s3a.path.style.access":"true","spark.dynamicAllocation.executorIdleTimeout":"300s"},
     )
  
