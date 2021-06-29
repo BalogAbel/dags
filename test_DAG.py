@@ -53,12 +53,11 @@ with DAG(
     start_date=days_ago(1),
     tags=['test'],
 ) as dag:
-    ##task_id='Pythpn_upload_files_local_to_s3',
-
-     upload_files = PythonOperator( 
-     python_callable= upload_to_s3,
-     provide_context=True,
-     op_kwargs={"s3_endpoint":"{{ var.value.s3_endpoint }}","access_key":"{{ var.value.s3_access_key }}","secretkey": "{{ var.value.s3_secret_key }}","source_folder": "{{ var.value.tmp_folder }}","target_bucket":"spark", "prefix":"test_data/"},
+    task_id='Pythpn_upload_files_local_to_s3',
+    upload_files = PythonOperator( 
+    python_callable= upload_to_s3,
+    provide_context=True,
+    op_kwargs={"s3_endpoint":"{{ var.value.s3_endpoint }}","access_key":"{{ var.value.s3_access_key }}","secretkey": "{{ var.value.s3_secret_key }}","source_folder": "{{ var.value.tmp_folder }}","target_bucket":"spark", "prefix":"test_data/"},
      ) 
 
     spark_1 = SparkSubmitOperator( 
