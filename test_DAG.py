@@ -55,29 +55,17 @@ with DAG(
 ) as dag:
     ##task_id='Pythpn_upload_files_local_to_s3',
 
-    ##upload_files = PythonOperator( 
-    ##python_callable= upload_to_s3,
-    ##provide_context=True,
-    ##op_kwargs={"s3_endpoint":"{{ var.value.s3_endpoint }}","access_key":"{{ var.value.s3_access_key }}","secretkey": "{{ var.value.s3_secret_key }}","source_folder": "{{ var.value.tmp_folder }}","target_bucket":"spark", "prefix":"test_data/"},
-    ##) 
+     upload_files = PythonOperator( 
+     python_callable= upload_to_s3,
+     provide_context=True,
+     op_kwargs={"s3_endpoint":"{{ var.value.s3_endpoint }}","access_key":"{{ var.value.s3_access_key }}","secretkey": "{{ var.value.s3_secret_key }}","source_folder": "{{ var.value.tmp_folder }}","target_bucket":"spark", "prefix":"test_data/"},
+     ) 
 
     spark_1 = SparkSubmitOperator( 
     task_id='runyellowcabjob' ,
     conn_id='Spark_conn',
     application="{{ conf.core.dags_folder }}/spark_codes/test_spark.py",
-    packages="org.apache.hadoop:hadoop-aws:3.2.0,org.apache.hadoop:hadoop-common:3.2.0,org.apache.hadoop:hadoop-hdfs:3.2.0,org.apache.spark:spark-core_2.12:3.0.1,org.apache.spark:spark-sql_2.12:3.0.1,org.apache.hadoop:hadoop-client:3.2.0"
-<dependency>
-    <groupId>org.apache.hadoop</groupId>
-    <artifactId>hadoop-core</artifactId>
-    <version>0.20.2</version>
-</dependency>
-
-<dependency>
-    <groupId>org.apache.hadoop</groupId>
-    <artifactId>hadoop-core</artifactId>
-    <version>0.20.2</version>
-</dependency>
-",
+    packages="org.apache.hadoop:hadoop-aws:3.2.0,org.apache.hadoop:hadoop-common:3.2.0,org.apache.hadoop:hadoop-hdfs:3.2.0,org.apache.spark:spark-core_2.12:3.0.1,org.apache.spark:spark-sql_2.12:3.0.1,org.apache.hadoop:hadoop-client:3.2.0",
     name='yellowcabtest',
     executor_cores=1,
     executor_memory='5g',
@@ -85,4 +73,4 @@ with DAG(
     conf={ "spark.hadoop.fs.s3a.access.key":"B2JDY11NHXLI77PHSX4D","spark.hadoop.fs.s3a.secret.key":"XBbgD4eM8Su2B7AZVyTe4hKY2IR1Oz05QYYEvCaD" ,"spark.hadoop.fs.s3a.impl":"org.apache.hadoop.fs.s3a.S3AFileSystem","spark.hadoop.fs.s3a.endpoint":"http://s3-rook-ceph.apps.okdpres.alerant.org.uk","spark.hadoop.fs.s3a.connection.ssl.enabled":"false","spark.hadoop.fs.s3a.path.style.access":"true","spark.dynamicAllocation.executorIdleTimeout":"300s"},
     )
  
-    ##spark_1 << upload_files
+    spark_1 << upload_files
